@@ -6,7 +6,7 @@
 #    By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 14:30:19 by pamatya           #+#    #+#              #
-#    Updated: 2024/07/23 23:05:29 by pamatya          ###   ########.fr        #
+#    Updated: 2024/07/25 04:10:50 by pamatya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,82 +16,59 @@ CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -f
 
+# BIN_PATH=	.
+BIN_PATH=	./bin
 NAME	=	fractol
+BIN		=	$(BIN_PATH)/$(NAME)
 
 FT_DIR	=	./lib
 LIBFT	=	libft.a
-FT_PATH	= 	$(FT_DIR)/$(LIBFT)
+FT		= 	$(FT_DIR)/$(LIBFT)
 
 MLX_DIR	=	./lib/MLX42
-MLX_LIB	=	libmlx42.a
-MLX		=	$(MLX_DIR)/$(MLX_LIB)
+LIB_MLX	=	libmlx42.a
+MLX		=	$(MLX_DIR)/$(LIB_MLX)
 
-PATHS	=	./lib
+INCLUDE	=	-I ./inc -I ./lib/includes -I ./lib/MLX42/include
 
-# EXE_PATH=	.
-EXE_PATH=	./bin
-
-TEST	=	./src/main.c
-
-SRCS	=	./src/main.c ./src/complex_arithmetic.c ./src/iter_funcns.c ./src/utils.c
-
+SRCS	=	./src/test_main.c ./src/complex_arithmetic.c ./src/iter_funcns.c ./src/utils.c
 OBJS	=	$(SRCS:.c=.o)
 
+TEST	=	./src/main.c
 # DEBUG	=	$(TEST)
 DEBUG	=	$(SRCS)
 
 all: $(NAME)
 
-# $(NAME): $(OBJS) $(LIBFT)
-# 	cp ./$(FT_PATH) $(EXE_PATH)/$(FRCT_LIB)
-# 	ar rcs $(EXE_PATH)/$(FRCT_LIB) $(OBJS)
-# 	$(CC) $(CFLAGS) $(EXE_PATH)/$(FRCT_LIB) -o $(EXE_PATH)/$(NAME)
-
-$(NAME): $(OBJS) $(FT_PATH) $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) $(FT_PATH) $(MLX) $(PATHS) -o $(EXE_PATH)/$(NAME)
+$(NAME): $(OBJS) $(LIBFT) $(LIB_MLX)
+	$(CC) $(CFLAGS) $(OBJS) $(FT) $(MLX) $(INCLUDE) -o $(BIN)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(FT_PATH):
+$(LIBFT):
 	$(MAKE) -sC $(FT_DIR) all
 
-$(MLX):
+$(LIB_MLX):
 	$(MAKE) -sC $(MLX_DIR)
 
 clean:
 	$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(EXE_PATH)/$(NAME)
+	$(RM) $(BIN)
+	$(RM) $(FT)
+	$(RM) $(MLX)
 
-# $(RM) $(EXE_PATH)/$(NAME)2
-# $(RM) ./bin/test
-# $(RM) -r ./bin/test.dSYM
-# $(RM) ./bin/bug
-# $(RM) -r ./bin/bug.dSYM
-
-re: fcleanx
-	$(MAKE) fclean
-	$(MAKE) all
-
-cleanx:
-	$(RM) $(OBJS)
-	$(MAKE) -sC $(FT_DIR) clean
-
-fcleanx: cleanx
-	$(RM) $(FRCT_LIBFT)
-	$(RM) $(EXE_PATH)/$(NAME)
+cleanx: clean
 	$(MAKE) -sC $(FT_DIR) fclean
 
-bug:
-	$(CC) -g $(CFLAGS) ./$(FT_PATH) $(DEBUG) -o ./bin/bug
+fcleanx: fclean
+	$(MAKE) -sC $(FT_DIR) fclean
 
-test:
-	$(CC) $(CFLAGS) ./$(FT_PATH) $(TEST) -o ./bin/test
-	./bin/test
+re: fclean
+	$(MAKE) fclean
+	$(MAKE) -sC $(MLX_DIR) re
+	$(MAKE) all
 
-exe: all
-	./bin/$(NAME)
-
-.PHONY: all clean fclean re cleanx fcleanx bug test
+.PHONY: all clean fclean re

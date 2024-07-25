@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 00:36:33 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/23 04:09:37 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/25 04:04:07 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FRACTOL_H
 
 # include "../lib/includes/libft.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 
 # include <fcntl.h>
 # include <sys/types.h>
@@ -29,6 +30,8 @@
 # define BOUND 2
 # define HEIGHT 800
 # define WIDTH 800
+# define ZOOM_FACTOR 2
+# define MOVE_FACTOR 0.1
 
 typedef struct s_cmplx
 {
@@ -38,10 +41,19 @@ typedef struct s_cmplx
 
 typedef struct s_fractal
 {
+	mlx_t	*mlx;
+	
+	double	boundary;
+	int		rend_iter;
+	
 	t_cmplx	start_z;
 	t_cmplx	constant;
-	
+	t_cmplx	julia;
 }	t_fractal;
+
+
+
+
 
 // complex_arithmetic.c
 t_cmplx	c_add(t_cmplx z1, t_cmplx z2);
