@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmplx_arithmetic.c                                 :+:      :+:    :+:   */
+/*   complex_arithmetic.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 00:05:07 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/23 03:37:07 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/26 08:51:43 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ t_cmplx	c_add(t_cmplx z1, t_cmplx z2);
 t_cmplx	c_sub(t_cmplx z1, t_cmplx z2);
 t_cmplx	c_mult(t_cmplx z1, t_cmplx z2);
 t_cmplx c_pow(t_cmplx z, int exp);
-double	c_distance(t_cmplx z);
+t_cmplx c_sqr(t_cmplx z);
+t_cmplx c_sqr_plus_const(t_cmplx z, t_cmplx c);
+double	c_dist_sqr(t_cmplx z);
 
 t_cmplx	c_add(t_cmplx z1, t_cmplx z2)
 {
@@ -68,7 +70,7 @@ t_cmplx c_sqr(t_cmplx z)
 	return (sqr);
 }
 
-t_cmplx c_sqr_plus_c(t_cmplx z, t_cmplx c)
+t_cmplx c_sqr_plus_const(t_cmplx z, t_cmplx c)
 {
 	t_cmplx	res;
 
@@ -77,7 +79,7 @@ t_cmplx c_sqr_plus_c(t_cmplx z, t_cmplx c)
 	return (res);
 }
 
-double	c_distance(t_cmplx z)
+double	c_dist_sqr(t_cmplx z)
 {
-	return (sqrt(z.rl * z.rl + z.im * z.im));
+	return (z.rl * z.rl + z.im * z.im);
 }
