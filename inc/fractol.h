@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 00:36:33 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/25 04:04:07 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/26 05:41:34 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ typedef struct s_fractal
 }	t_fractal;
 
 
-
-
+// errors.c
+void	arg_error(int ec);
 
 // complex_arithmetic.c
 t_cmplx	c_add(t_cmplx z1, t_cmplx z2);
@@ -68,6 +68,8 @@ double	c_distance(t_cmplx z);
 t_cmplx	get_next_point(t_cmplx z_n, t_cmplx c);
 
 // utils.c
+void	frexit(char *str, t_fractal fr, int ec);
+
 void	printf_float(char *label, double num);
 void	printf_cmplx(t_cmplx z);
 
