@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 05:48:45 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/27 04:35:42 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/27 04:41:36 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ void	draw_fractal(t_fractal *fr)
 		dim[1] = 0;
 		while (dim[1] < WIDTH)
 		{
-			tmp.rl = (dim[1] + fr->move_hor) * fr->zoom;
-			tmp.im = (dim[0] + fr->move_hor) * fr->zoom;
-			fr->c.rl = scale(tmp.rl, WIDTH, GRAPH_MIN, GRAPH_MAX);
-			fr->c.im = scale(tmp.im, HEIGHT, GRAPH_MAX, GRAPH_MIN);
+			tmp.rl = dim[1] * fr->zoom;
+			tmp.im = dim[0] * fr->zoom;
+			fr->c.rl = scale(tmp.rl, WIDTH, GRAPH_MIN, GRAPH_MAX)  + fr->move_hor;
+			fr->c.im = scale(tmp.im, HEIGHT, GRAPH_MAX, GRAPH_MIN) + fr->move_ver;
 			escape_val = blast_off(fr);
 			color = scale_color(escape_val, fr->iter_rendition, RED, PSYCH_VIOLET);
 			// offset = dim[0] * WIDTH + dim[1];

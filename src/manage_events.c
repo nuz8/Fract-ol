@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 01:47:59 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/27 04:15:02 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/27 04:47:42 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	upon_press(mlx_key_data_t keydata, void* param)
 	fr = (t_fractal *)param;
 	
 	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
-		fr->move_ver += (0.5 * fr->zoom);
+		fr->move_ver += (0.25 * fr->zoom);
 	else if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
-		fr->move_ver -= (0.5 * fr->zoom);
+		fr->move_ver -= (0.25 * fr->zoom);
 	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
-		fr->move_hor += 0.5;
+		fr->move_hor -= (0.25 * fr->zoom);
 	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
-		fr->move_hor -= 0.5;
+		fr->move_hor += (0.25 * fr->zoom);
 	else if (keydata.key == MLX_KEY_KP_ADD && keydata.action == MLX_PRESS)
 		fr->iter_rendition += 5;
 	else if (keydata.key == MLX_KEY_KP_SUBTRACT && keydata.action == MLX_PRESS)
