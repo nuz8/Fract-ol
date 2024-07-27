@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 04:19:51 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/26 06:35:08 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/27 03:32:16 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 		init_data(&fr, argv);
 		init_fractal(&fr);
 		// render_fractal(&fr);
+		init_events(&fr);
 		mlx_loop(fr.mlx);
 	}
 	else

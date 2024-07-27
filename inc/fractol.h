@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 00:36:33 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/26 09:59:49 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/27 03:45:53 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
 
 # define _PRINT 1
 
-# define MAX_ITER 10000
+# define MAX_ITER 50
 # define ESC_RADIUS 2
-# define HEIGHT 1000
-# define WIDTH 1000
+# define HEIGHT 800
+# define WIDTH 800
 # define ZOOM_FACTOR 2
 # define MOVE_FACTOR 0.1
 # define GRAPH_MIN -2
@@ -70,6 +70,9 @@ typedef struct s_fractal
 	// Hooks
 	double	bound;
 	int		iter_rendition;
+	double	move_hor;
+	double	move_ver;
+	double	zoom;
 	
 }	t_fractal;
 
@@ -79,6 +82,12 @@ void	init_data(t_fractal *fr, char **argv);
 void	init_fractal(t_fractal *fr);
 void	draw_fractal(t_fractal *fr);
 int		blast_off(t_fractal *fr);
+void	init_events(t_fractal *fr);
+
+// manage_events.c
+void	upon_press(mlx_key_data_t keydata, void* param);
+void	upon_scroll(double xdelta, double ydelta, void* param);
+void	upon_close(void* param);
 
 // errors.c
 void	arg_error(int ec);
@@ -98,7 +107,8 @@ double	scale(double val_to_sc, double max_val, double sc_min, double sc_max);
 int	scale_color(int iterations, int max_iter, int start_color, int end_color);
 
 // utils.c
-void	frexit(char *str, t_fractal *fr);
+// void	frexit(char *str, t_fractal *fr);
+void	frexit(char *str, t_fractal *fr, int status);
 
 void	printf_float(char *label, double num);
 void	printf_cmplx(t_cmplx z);
