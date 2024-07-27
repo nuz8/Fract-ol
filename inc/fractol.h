@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 00:36:33 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/27 03:45:53 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/27 09:30:06 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@
 # define WIDTH 800
 # define ZOOM_FACTOR 2
 # define MOVE_FACTOR 0.1
-# define GRAPH_MIN -2
-# define GRAPH_MAX 2
+# define GRAPH_XMIN -2
+# define GRAPH_XMAX 2
+# define GRAPH_YMAX 2
+# define GRAPH_YMIN -2
 
 
 // Color definitions: simple RGB
@@ -57,9 +59,16 @@ typedef struct s_fractal
 {
 	// fractal
 	char	*name;
+	int		mode;
 	t_cmplx	z;
 	t_cmplx	c;
-	t_cmplx	julia;
+	t_cmplx	center;
+	double	plot_radius_x;
+	double	plot_radius_y;
+	double	lbound;
+	double	rbound;
+	double	tbound;
+	double	bbound;
 	
 	// MLX
 	mlx_t	*mlx;
@@ -73,24 +82,22 @@ typedef struct s_fractal
 	double	move_hor;
 	double	move_ver;
 	double	zoom;
-	
 }	t_fractal;
 
-
 // initiations.c
-void	init_data(t_fractal *fr, char **argv);
+void	initialize_fields(t_fractal *fr, int argc, char **argv, int mode);
 void	init_fractal(t_fractal *fr);
-void	draw_fractal(t_fractal *fr);
-int		blast_off(t_fractal *fr);
 void	init_events(t_fractal *fr);
+
+// renditions.c
+void	render_fractals(t_fractal *fr);
+void	render_mandelbrot(t_fractal *fr);
+void	render_julia(t_fractal *fr);
 
 // manage_events.c
 void	upon_press(mlx_key_data_t keydata, void* param);
 void	upon_scroll(double xdelta, double ydelta, void* param);
 void	upon_close(void* param);
-
-// errors.c
-void	arg_error(int ec);
 
 // complex_arithmetic.c
 t_cmplx	c_add(t_cmplx z1, t_cmplx z2);
@@ -103,10 +110,13 @@ double	c_dist_sqr(t_cmplx z);
 
 // iter_funcns.c
 t_cmplx	get_next_iteration(t_cmplx z_n, t_cmplx c);
-double	scale(double val_to_sc, double max_val, double sc_min, double sc_max);
-int	scale_color(int iterations, int max_iter, int start_color, int end_color);
+double	scale_point(double val_to_sc, double max_val, double sc_min, double sc_max);
+int		scale_color(int iterations, int max_iter, int start_color, int end_color);
+int		blast_off(t_fractal *fr);
 
 // utils.c
+void	arg_error(int status);
+double	ft_atod(char *str);
 // void	frexit(char *str, t_fractal *fr);
 void	frexit(char *str, t_fractal *fr, int status);
 

@@ -6,15 +6,16 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 03:39:50 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/26 09:55:25 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/27 05:49:36 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fractol.h"
 
 t_cmplx	get_next_iteration(t_cmplx z_n, t_cmplx c);
-double	scale(double val_to_sc, double max_val, double sc_min, double sc_max);
-int	scale_color(int iterations, int max_iter, int start_color, int end_color);
+double	scale_point(double val_to_sc, double max_val, double sc_min, double sc_max);
+int		scale_color(int iterations, int max_iter, int start_color, int end_color);
+int		blast_off(t_fractal *fr);
 
 t_cmplx	get_next_iteration(t_cmplx z_n, t_cmplx c)
 {
@@ -28,7 +29,7 @@ t_cmplx	get_next_iteration(t_cmplx z_n, t_cmplx c)
 
 // Function to scale the val_to_sc within the range sc_min and sc_max, using
 // linear interpolation
-double	scale(double val_to_sc, double max_val, double sc_min, double sc_max)
+double	scale_point(double val_to_sc, double max_val, double sc_min, double sc_max)
 {
 	double	scaled_val;
 	double	ratio;
@@ -47,4 +48,20 @@ int	scale_color(int iterations, int max_iter, int start_color, int end_color)
 	ratio = (end_color - start_color) / (max_iter - 0);
 	scaled_color = start_color + iterations * ratio;
 	return (scaled_color);
+}
+
+// Function to calculate the no. of escape_val to escape the radius
+int	blast_off(t_fractal *fr)
+{
+	int		escape_val;
+	t_cmplx	zn;
+
+	zn = fr->z;
+	escape_val = 0;
+	while (escape_val < fr->iter_rendition && c_dist_sqr(zn) <= fr->bound)
+	{
+		zn = get_next_iteration(zn, fr->c);
+		escape_val++;
+	}
+	return (escape_val);
 }

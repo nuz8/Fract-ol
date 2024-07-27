@@ -6,7 +6,7 @@
 #    By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 14:30:19 by pamatya           #+#    #+#              #
-#    Updated: 2024/07/27 03:29:18 by pamatya          ###   ########.fr        #
+#    Updated: 2024/07/27 05:34:19 by pamatya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ MLX		=	$(MLX_DIR)/$(LIB_MLX)
 HEADERS	=	-I ./inc -I ./lib/includes
 
 
-SRCS	=	./src/main.c ./src/initiations.c ./src/manage_events.c ./src/errors.c ./src/complex_arithmetic.c ./src/iter_funcns.c ./src/utils.c
+SRCS	=	./src/main.c ./src/initiations.c ./src/renditions.c ./src/manage_events.c ./src/complex_arithmetic.c ./src/iter_funcns.c ./src/utils.c
 OBJS	=	$(SRCS:.c=.o)
 
 TEST	=	./src/main.c
