@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 03:39:50 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/27 05:49:36 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/27 11:50:21 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_cmplx	get_next_iteration(t_cmplx z_n, t_cmplx c)
 {
 	t_cmplx	z_nxt;
 
-	z_nxt = c_add(c_pow(z_n, 2), c);
+	// z_nxt = c_add(c_pow(z_n, 2), c);
 	// z_nxt = c_add(c_sqr(z_n), c);
-	// z_nxt = c_sqr_plus_const(z_n, c);
+	z_nxt = c_sqr_plus_const(z_n, c);
 	return (z_nxt);
 }
 
@@ -60,7 +60,11 @@ int	blast_off(t_fractal *fr)
 	escape_val = 0;
 	while (escape_val < fr->iter_rendition && c_dist_sqr(zn) <= fr->bound)
 	{
-		zn = get_next_iteration(zn, fr->c);
+		// zn = get_next_iteration(zn, fr->c);
+		if (fr->mode == 3)
+			zn = c_sqr_plus_const_abs(zn, fr->c);
+		else
+			zn = c_sqr_plus_const(zn, fr->c);
 		escape_val++;
 	}
 	return (escape_val);

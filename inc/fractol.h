@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 00:36:33 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/27 09:30:06 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/27 11:53:53 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 
 # define MAX_ITER 50
 # define ESC_RADIUS 2
-# define HEIGHT 800
-# define WIDTH 800
+# define HEIGHT 1200
+# define WIDTH 1200
 # define ZOOM_FACTOR 2
 # define MOVE_FACTOR 0.1
 # define GRAPH_XMIN -2
@@ -63,6 +63,7 @@ typedef struct s_fractal
 	t_cmplx	z;
 	t_cmplx	c;
 	t_cmplx	center;
+	t_cmplx	cursor;
 	double	plot_radius_x;
 	double	plot_radius_y;
 	double	lbound;
@@ -93,11 +94,16 @@ void	init_events(t_fractal *fr);
 void	render_fractals(t_fractal *fr);
 void	render_mandelbrot(t_fractal *fr);
 void	render_julia(t_fractal *fr);
+void	render_burning_ship(t_fractal *fr);
 
 // manage_events.c
 void	upon_press(mlx_key_data_t keydata, void* param);
 void	upon_scroll(double xdelta, double ydelta, void* param);
 void	upon_close(void* param);
+
+void	update_to_new_center(t_fractal *fr);
+void	update_center_to_cursor(t_fractal *fr);
+void	update_bounds(t_fractal *fr);
 
 // complex_arithmetic.c
 t_cmplx	c_add(t_cmplx z1, t_cmplx z2);
@@ -106,7 +112,9 @@ t_cmplx	c_mult(t_cmplx z1, t_cmplx z2);
 t_cmplx c_pow(t_cmplx z, int exp);
 t_cmplx c_sqr(t_cmplx z);
 t_cmplx c_sqr_plus_const(t_cmplx z, t_cmplx c);
+t_cmplx c_sqr_plus_const_abs(t_cmplx z, t_cmplx c);
 double	c_dist_sqr(t_cmplx z);
+double	ft_abs(double num);
 
 // iter_funcns.c
 t_cmplx	get_next_iteration(t_cmplx z_n, t_cmplx c);

@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 05:48:45 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/27 09:23:15 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/27 11:40:00 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	initialize_fields(t_fractal *fr, int argc, char **argv, int mode)
 	fr->rbound = fr->center.rl + fr->plot_radius_x;
 	fr->tbound = fr->center.im + fr->plot_radius_y;
 	fr->bbound = fr->center.im - fr->plot_radius_y;
-	if (mode == 2 || mode == 3)
+	if (mode == 2)
 	{
 		fr->c.rl = ft_atod(argv[2]);
 		fr->c.im = ft_atod(argv[3]);

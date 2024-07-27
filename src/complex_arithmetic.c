@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 00:05:07 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/26 08:51:43 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/27 11:43:50 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ t_cmplx	c_mult(t_cmplx z1, t_cmplx z2);
 t_cmplx c_pow(t_cmplx z, int exp);
 t_cmplx c_sqr(t_cmplx z);
 t_cmplx c_sqr_plus_const(t_cmplx z, t_cmplx c);
+t_cmplx c_sqr_plus_const_abs(t_cmplx z, t_cmplx c);
 double	c_dist_sqr(t_cmplx z);
+double	ft_abs(double num);
 
 t_cmplx	c_add(t_cmplx z1, t_cmplx z2)
 {
@@ -73,13 +75,37 @@ t_cmplx c_sqr(t_cmplx z)
 t_cmplx c_sqr_plus_const(t_cmplx z, t_cmplx c)
 {
 	t_cmplx	res;
-
+	
 	res.rl = z.rl * z.rl - z.im * z.im + c.rl;
 	res.im = 2 * z.rl * z.im + c.im;
+	return (res);
+}
+
+t_cmplx c_sqr_plus_const_abs(t_cmplx z, t_cmplx c)
+{
+	t_cmplx	res;
+	// double	abs;
+	
+	res.rl = ft_abs((z.rl * z.rl - z.im * z.im) + c.rl);
+	
+	// abs = z.rl * z.im;
+	// if (abs < 0)
+	// 	abs = -abs;
+	// res.im = 2 * abs + c.im;
+
+	res.im = (2 * ft_abs(z.rl) * ft_abs(z.im)) + c.im;
+	// res.im = 2 * ft_abs(z.rl *z.im) + c.im;
 	return (res);
 }
 
 double	c_dist_sqr(t_cmplx z)
 {
 	return (z.rl * z.rl + z.im * z.im);
+}
+
+double	ft_abs(double num)
+{
+	if (num < 0)
+		num = -num;
+	return (num);
 }

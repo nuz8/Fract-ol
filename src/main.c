@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 04:19:51 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/27 08:40:34 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/27 11:40:12 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	main(int argc, char **argv)
 		mode = 1;
 	else if (argc == 4 && ft_strncmp(argv[1], "Julia", 5) == 0)
 		mode = 2;
-	// else if (argc == 4 && ft_strncmp(argv[1], "Burning ship", 12) == 0)
-	// 	mode = 3;
+	else if (argc == 2 && ft_strncmp(argv[1], "Burning ship", 12) == 0)
+		mode = 3;
 	else
 		arg_error(EXIT_FAILURE);
 	initialize_fields(&fr, argc, argv, mode);
@@ -31,6 +31,6 @@ int	main(int argc, char **argv)
 	init_events(&fr);
 	mlx_loop(fr.mlx);
 	mlx_terminate(fr.mlx);
-	printf("im done\n");
+	// printf("im done\n");
 	return (0);
 }
