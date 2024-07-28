@@ -6,14 +6,14 @@
 #    By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 14:30:19 by pamatya           #+#    #+#              #
-#    Updated: 2024/07/27 05:34:19 by pamatya          ###   ########.fr        #
+#    Updated: 2024/07/28 03:18:27 by pamatya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
 # CC		=	cc -g -fsanitize=address
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -g
 RM		=	rm -f
 
 # BIN_PATH=	.

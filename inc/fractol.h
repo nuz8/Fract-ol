@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 00:36:33 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/27 11:53:53 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/28 07:31:46 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@
 
 # define MAX_ITER 50
 # define ESC_RADIUS 2
-# define HEIGHT 1200
-# define WIDTH 1200
-# define ZOOM_FACTOR 2
+# define HEIGHT 1000
+# define WIDTH 1000
+# define MAGNIFICATION 1.25
 # define MOVE_FACTOR 0.1
 # define GRAPH_XMIN -2
 # define GRAPH_XMAX 2
 # define GRAPH_YMAX 2
 # define GRAPH_YMIN -2
-
+# define MOVE_SPEED 0.1
 
 // Color definitions: simple RGB
 #define BLACK 0x000000 // RGB for black
@@ -55,6 +55,13 @@ typedef struct s_cmplx
 	double	im;
 }	t_cmplx;
 
+typedef struct s_zoom
+{
+	t_cmplx	old_tl;
+	t_cmplx	old_br;
+	t_cmplx	new_tl;
+	t_cmplx	new_br;
+}	t_zoom;
 typedef struct s_fractal
 {
 	// fractal
@@ -62,8 +69,11 @@ typedef struct s_fractal
 	int		mode;
 	t_cmplx	z;
 	t_cmplx	c;
+	
+	// Graph / display area (0 -> WIDTH/HEIGHT)
 	t_cmplx	center;
 	t_cmplx	cursor;
+	t_cmplx	offset;
 	double	plot_radius_x;
 	double	plot_radius_y;
 	double	lbound;
@@ -91,10 +101,12 @@ void	init_fractal(t_fractal *fr);
 void	init_events(t_fractal *fr);
 
 // renditions.c
-void	render_fractals(t_fractal *fr);
+// void	render_fractals(t_fractal *fr);
+void	render_fractals(void *f);
 void	render_mandelbrot(t_fractal *fr);
 void	render_julia(t_fractal *fr);
 void	render_burning_ship(t_fractal *fr);
+void	transform_bounds(t_fractal *fr);
 
 // manage_events.c
 void	upon_press(mlx_key_data_t keydata, void* param);

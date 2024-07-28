@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 04:19:51 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/27 11:40:12 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/28 03:39:30 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int argc, char **argv)
 	initialize_fields(&fr, argc, argv, mode);
 	init_fractal(&fr);
 	init_events(&fr);
-	mlx_loop(fr.mlx);
-	mlx_terminate(fr.mlx);
+	// mlx_loop(fr.mlx);
+	// mlx_terminate(fr.mlx);
 	// printf("im done\n");
 	return (0);
 }
