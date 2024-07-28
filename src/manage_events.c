@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 01:47:59 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/28 07:38:00 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/28 10:23:32 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,43 +151,77 @@ void	change_resolution(t_fractal *fr, mlx_key_data_t keydata)
 
 void	zoom_in(t_fractal *fr)
 {
-	t_zoom	zm;
+	// t_zoom	zm;
 	
-	update_geometry(fr);
-	zm.old_tl.rl = fr->cursor.rl - fr->lbound;
-	zm.old_br.rl = fr->rbound - fr->cursor.rl;
-	zm.old_tl.im = fr->tbound - fr->cursor.im;
-	zm.old_br.im = fr->cursor.im - fr->bbound;
-	zm.new_tl.rl = zm.old_tl.rl / MAGNIFICATION;
-	zm.new_tl.im = zm.old_tl.im / MAGNIFICATION;
-	zm.new_br.rl = zm.old_br.rl / MAGNIFICATION;
-	zm.new_br.im = zm.old_br.im / MAGNIFICATION;
+	// update_geometry(fr);
+	// zm.old_tl.rl = fr->cursor.rl - fr->lbound;
+	// zm.old_br.rl = fr->rbound - fr->cursor.rl;
+	// zm.old_tl.im = fr->tbound - fr->cursor.im;
+	// zm.old_br.im = fr->cursor.im - fr->bbound;
+	
+	// // zm.new_tl.rl = zm.old_tl.rl / MAGNIFICATION;
+	// // zm.new_tl.im = zm.old_tl.im / MAGNIFICATION;
+	// // zm.new_br.rl = zm.old_br.rl / MAGNIFICATION;
+	// // zm.new_br.im = zm.old_br.im / MAGNIFICATION;
+	
+	// zm.new_tl.rl = zm.old_tl.rl;
+	// zm.new_tl.im = zm.old_tl.im;
+	// zm.new_br.rl = (fr->rbound - fr->lbound) / MAGNIFICATION - zm.new_tl.rl;
+	// zm.new_br.im = (fr->tbound - fr->bbound) / MAGNIFICATION - zm.new_tl.im;
 
-	fr->lbound = fr->cursor.rl - zm.new_tl.rl;
-	fr->rbound = fr->cursor.rl + zm.new_br.rl;
-	fr->tbound = fr->cursor.im + zm.new_tl.im;
-	fr->bbound = fr->cursor.im - zm.new_br.im;
+	// fr->lbound = fr->cursor.rl - zm.new_tl.rl;
+	// fr->rbound = fr->cursor.rl + zm.new_br.rl;
+	// fr->tbound = fr->cursor.im + zm.new_tl.im;
+	// fr->bbound = fr->cursor.im - zm.new_br.im;
+
+	// fr->lbound = fr->cursor.rl - (fr->cursor.rl - fr->lbound) / MAGNIFICATION;
+	// fr->rbound = fr->cursor.rl + (fr->rbound - fr->cursor.rl) / MAGNIFICATION;
+	// fr->tbound = fr->cursor.im + (fr->tbound - fr->cursor.im) / MAGNIFICATION;
+	// fr->bbound = fr->cursor.im - (fr->cursor.im - fr->bbound) / MAGNIFICATION;
+
+	fr->lbound = fr->cursor.rl + (fr->lbound - fr->cursor.rl) / MAGNIFICATION;
+	fr->rbound = fr->cursor.rl + (fr->rbound - fr->cursor.rl) / MAGNIFICATION;
+	fr->tbound = fr->cursor.im + (fr->tbound - fr->cursor.im) / MAGNIFICATION;
+	fr->bbound = fr->cursor.im + (fr->bbound - fr->cursor.im) / MAGNIFICATION;
+	
 	printf("zoomed_in\n");
 }
 
 void	zoom_out(t_fractal *fr)
 {
-	t_zoom	zm;
+	// t_zoom	zm;
 	
-	update_geometry(fr);
-	zm.old_tl.rl = fr->cursor.rl - fr->lbound;
-	zm.old_br.rl = fr->rbound - fr->cursor.rl;
-	zm.old_tl.im = fr->tbound - fr->cursor.im;
-	zm.old_br.im = fr->cursor.im - fr->bbound;
-	zm.new_tl.rl = zm.old_tl.rl * MAGNIFICATION;
-	zm.new_tl.im = zm.old_tl.im * MAGNIFICATION;
-	zm.new_br.rl = zm.old_br.rl * MAGNIFICATION;
-	zm.new_br.im = zm.old_br.im * MAGNIFICATION;
+	// update_geometry(fr);
+	// zm.old_tl.rl = fr->cursor.rl - fr->lbound;
+	// zm.old_br.rl = fr->rbound - fr->cursor.rl;
+	// zm.old_tl.im = fr->tbound - fr->cursor.im;
+	// zm.old_br.im = fr->cursor.im - fr->bbound;
+	
+	// // zm.new_tl.rl = zm.old_tl.rl * MAGNIFICATION;
+	// // zm.new_tl.im = zm.old_tl.im * MAGNIFICATION;
+	// // zm.new_br.rl = zm.old_br.rl * MAGNIFICATION;
+	// // zm.new_br.im = zm.old_br.im * MAGNIFICATION;
 
-	fr->lbound = fr->cursor.rl - zm.new_tl.rl;
-	fr->rbound = fr->cursor.rl + zm.new_br.rl;
-	fr->tbound = fr->cursor.im + zm.new_tl.im;
-	fr->bbound = fr->cursor.im - zm.new_br.im;
+	// zm.new_tl.rl = zm.old_tl.rl;
+	// zm.new_tl.im = zm.old_tl.im;
+	// zm.new_br.rl = (fr->rbound - fr->lbound) * MAGNIFICATION - zm.new_tl.rl;
+	// zm.new_br.im = (fr->tbound - fr->bbound) * MAGNIFICATION - zm.new_tl.im;
+
+	// fr->lbound = fr->cursor.rl - zm.new_tl.rl;
+	// fr->rbound = fr->cursor.rl + zm.new_br.rl;
+	// fr->tbound = fr->cursor.im + zm.new_tl.im;
+	// fr->bbound = fr->cursor.im - zm.new_br.im;
+
+	// fr->lbound = fr->cursor.rl - (fr->cursor.rl - fr->lbound) * MAGNIFICATION;
+	// fr->rbound = fr->cursor.rl + (fr->rbound - fr->cursor.rl) * MAGNIFICATION;
+	// fr->tbound = fr->cursor.im + (fr->tbound - fr->cursor.im) * MAGNIFICATION;
+	// fr->bbound = fr->cursor.im - (fr->cursor.im - fr->bbound) * MAGNIFICATION;
+
+	fr->lbound = fr->cursor.rl + (fr->lbound - fr->cursor.rl) * MAGNIFICATION;
+	fr->rbound = fr->cursor.rl + (fr->rbound - fr->cursor.rl) * MAGNIFICATION;
+	fr->tbound = fr->cursor.im + (fr->tbound - fr->cursor.im) * MAGNIFICATION;
+	fr->bbound = fr->cursor.im + (fr->bbound - fr->cursor.im) * MAGNIFICATION;
+	
 	printf("zoomed_out\n");
 }
 
