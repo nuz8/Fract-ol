@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 00:36:33 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/28 10:20:36 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/28 16:03:48 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 
 # define _PRINT 1
 
-# define MAX_ITER 50
+# define MAX_ITER 100
 # define ESC_RADIUS 2
-# define HEIGHT 1000
-# define WIDTH 1000
-# define MAGNIFICATION 2
+# define HEIGHT 1200
+# define WIDTH 1200
+# define MAGNIFICATION 1.25
 # define MOVE_FACTOR 0.1
 # define GRAPH_XMIN -2
 # define GRAPH_XMAX 2

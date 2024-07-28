@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 05:02:48 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/28 06:21:37 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/28 15:32:42 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,17 @@ void	render_mandelbrot(t_fractal *fr)
 	t_cmplx	tmp;
 
 	dim[0] = 0;
-	while (dim[0] < HEIGHT)
+	while (dim[0] < (int)fr->img->height)
 	{
 		dim[1] = 0;
-		while (dim[1] < WIDTH)
+		while (dim[1] < (int)fr->img->width)
 		{
 			// tmp.rl = dim[1] * fr->zoom;
 			// tmp.im = dim[0] * fr->zoom;
 			tmp.rl = dim[1];
 			tmp.im = dim[0];
-			
-			fr->c.rl = scale_point(tmp.rl, WIDTH, fr->lbound, fr->rbound);
-			fr->c.im = scale_point(tmp.im, HEIGHT, fr->bbound, fr->tbound);
+			fr->c.rl = scale_point(tmp.rl, fr->img->width, fr->lbound, fr->rbound);
+			fr->c.im = scale_point(tmp.im, fr->img->height, fr->bbound, fr->tbound);
 			
 			// fr->c.rl = (scale_point(tmp.rl, WIDTH, fr->lbound, fr->rbound) * fr->zoom)  + fr->move_hor;
 			// fr->c.im = (scale_point(tmp.im, HEIGHT, fr->bbound, fr->tbound) * fr->zoom) + fr->move_ver;

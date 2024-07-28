@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 01:47:59 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/28 10:23:32 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/28 16:11:33 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@ void	change_resolution(t_fractal *fr, mlx_key_data_t keydata);
 void	zoom_in(t_fractal *fr);
 void	zoom_out(t_fractal *fr);
 
-
-
-void	update_to_new_center(t_fractal *fr);
-void	update_center_to_cursor(t_fractal *fr);
 
 void	upon_press(mlx_key_data_t keydata, void* param)
 {
@@ -48,6 +44,8 @@ void	upon_press(mlx_key_data_t keydata, void* param)
 		change_resolution(fr, keydata);
 	else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		upon_close(fr);
+	printf("I just printed this from upon_press\n");
+	// render_fractals(fr);
 }
 
 void	upon_scroll(double xdelta, double ydelta, void* param)
@@ -59,17 +57,27 @@ void	upon_scroll(double xdelta, double ydelta, void* param)
 	fr = (t_fractal *)param;
 	(void)xdelta;
 	mlx_get_mouse_pos(fr->mlx, &cursor_x, &cursor_y);
-	printf("cursor_x: %d, cursor_y: %d\n", cursor_x, cursor_y);
-	printf("rbound: %f, cursor_y: %f\n", fr->rbound, fr->lbound);
+	
+	// printf("cursor_x: %d, cursor_y: %d\n", cursor_x, cursor_y);
+	// printf("rbound: %f, cursor_y: %f\n", fr->rbound, fr->lbound);
+	
+	// if (cursor_x >= 0 && cursor_y >= 0 && cursor_x < WIDTH && cursor_y < HEIGHT)
+	// {
+	// 	fr->cursor.rl = scale_point(cursor_x, WIDTH, fr->lbound, fr->rbound);
+	// 	fr->cursor.im = scale_point(cursor_y, HEIGHT, fr->tbound, fr->bbound);
+	// }
 	fr->cursor.rl = scale_point(cursor_x, WIDTH, fr->lbound, fr->rbound);
 	fr->cursor.im = scale_point(cursor_y, HEIGHT, fr->tbound, fr->bbound);
-	printf("AFTER rbound: %f, cursor_y: %f\n", fr->rbound, fr->lbound);
-	printf("cursor.rl: %f, cursor.im: %f\n\n\n", fr->cursor.rl, fr->cursor.im);
+	
+	// printf("AFTER rbound: %f, cursor_y: %f\n", fr->rbound, fr->lbound);
+	// printf("cursor.rl: %f, cursor.im: %f\n\n\n", fr->cursor.rl, fr->cursor.im);
 	
 	if (ydelta < 0)
 		zoom_in(fr);
 	else if (ydelta > 0)
 		zoom_out(fr);
+	printf("I just printed this from upon_scroll\n");
+	// render_fractals(fr);
 }
 
 void	upon_close(void* param)
@@ -79,7 +87,6 @@ void	upon_close(void* param)
 	fr = (t_fractal *)param;
 	frexit(NULL, fr, EXIT_SUCCESS);
 }
-
 
 void	update_geometry(t_fractal *fr)
 {
@@ -153,110 +160,72 @@ void	zoom_in(t_fractal *fr)
 {
 	// t_zoom	zm;
 	
-	// update_geometry(fr);
+	update_geometry(fr);
+
+	// fr->lbound = fr->lbound - (fr->rbound - fr->lbound) / MAGNIFICATION;
+	// fr->rbound = fr->rbound / MAGNIFICATION;
+	// fr->tbound = fr->tbound / MAGNIFICATION;
+	// fr->bbound = fr->bbound / MAGNIFICATION;
+	
 	// zm.old_tl.rl = fr->cursor.rl - fr->lbound;
 	// zm.old_br.rl = fr->rbound - fr->cursor.rl;
 	// zm.old_tl.im = fr->tbound - fr->cursor.im;
 	// zm.old_br.im = fr->cursor.im - fr->bbound;
 	
-	// // zm.new_tl.rl = zm.old_tl.rl / MAGNIFICATION;
-	// // zm.new_tl.im = zm.old_tl.im / MAGNIFICATION;
-	// // zm.new_br.rl = zm.old_br.rl / MAGNIFICATION;
-	// // zm.new_br.im = zm.old_br.im / MAGNIFICATION;
+	// zm.new_tl.rl = zm.old_tl.rl / MAGNIFICATION;
+	// zm.new_tl.im = zm.old_tl.im / MAGNIFICATION;
+	// zm.new_br.rl = zm.old_br.rl / MAGNIFICATION;
+	// zm.new_br.im = zm.old_br.im / MAGNIFICATION;
 	
-	// zm.new_tl.rl = zm.old_tl.rl;
-	// zm.new_tl.im = zm.old_tl.im;
-	// zm.new_br.rl = (fr->rbound - fr->lbound) / MAGNIFICATION - zm.new_tl.rl;
-	// zm.new_br.im = (fr->tbound - fr->bbound) / MAGNIFICATION - zm.new_tl.im;
+	// // zm.new_tl.rl = zm.old_tl.rl;
+	// // zm.new_tl.im = zm.old_tl.im;
+	// // zm.new_br.rl = (fr->rbound - fr->lbound) / MAGNIFICATION - zm.new_tl.rl;
+	// // zm.new_br.im = (fr->tbound - fr->bbound) / MAGNIFICATION - zm.new_tl.im;
 
 	// fr->lbound = fr->cursor.rl - zm.new_tl.rl;
 	// fr->rbound = fr->cursor.rl + zm.new_br.rl;
 	// fr->tbound = fr->cursor.im + zm.new_tl.im;
 	// fr->bbound = fr->cursor.im - zm.new_br.im;
 
-	// fr->lbound = fr->cursor.rl - (fr->cursor.rl - fr->lbound) / MAGNIFICATION;
-	// fr->rbound = fr->cursor.rl + (fr->rbound - fr->cursor.rl) / MAGNIFICATION;
-	// fr->tbound = fr->cursor.im + (fr->tbound - fr->cursor.im) / MAGNIFICATION;
-	// fr->bbound = fr->cursor.im - (fr->cursor.im - fr->bbound) / MAGNIFICATION;
-
-	fr->lbound = fr->cursor.rl + (fr->lbound - fr->cursor.rl) / MAGNIFICATION;
+	fr->lbound = fr->cursor.rl - (fr->cursor.rl - fr->lbound) / MAGNIFICATION;
 	fr->rbound = fr->cursor.rl + (fr->rbound - fr->cursor.rl) / MAGNIFICATION;
 	fr->tbound = fr->cursor.im + (fr->tbound - fr->cursor.im) / MAGNIFICATION;
-	fr->bbound = fr->cursor.im + (fr->bbound - fr->cursor.im) / MAGNIFICATION;
-	
-	printf("zoomed_in\n");
+	fr->bbound = fr->cursor.im - (fr->cursor.im - fr->bbound) / MAGNIFICATION;
 }
 
 void	zoom_out(t_fractal *fr)
 {
 	// t_zoom	zm;
 	
-	// update_geometry(fr);
+	update_geometry(fr);
+
+	// fr->lbound = fr->lbound * MAGNIFICATION;
+	// fr->rbound = fr->rbound * MAGNIFICATION;
+	// fr->tbound = fr->tbound * MAGNIFICATION;
+	// fr->bbound = fr->bbound * MAGNIFICATION;
+	
 	// zm.old_tl.rl = fr->cursor.rl - fr->lbound;
 	// zm.old_br.rl = fr->rbound - fr->cursor.rl;
 	// zm.old_tl.im = fr->tbound - fr->cursor.im;
 	// zm.old_br.im = fr->cursor.im - fr->bbound;
 	
-	// // zm.new_tl.rl = zm.old_tl.rl * MAGNIFICATION;
-	// // zm.new_tl.im = zm.old_tl.im * MAGNIFICATION;
-	// // zm.new_br.rl = zm.old_br.rl * MAGNIFICATION;
-	// // zm.new_br.im = zm.old_br.im * MAGNIFICATION;
+	// zm.new_tl.rl = zm.old_tl.rl * MAGNIFICATION;
+	// zm.new_tl.im = zm.old_tl.im * MAGNIFICATION;
+	// zm.new_br.rl = zm.old_br.rl * MAGNIFICATION;
+	// zm.new_br.im = zm.old_br.im * MAGNIFICATION;
 
-	// zm.new_tl.rl = zm.old_tl.rl;
-	// zm.new_tl.im = zm.old_tl.im;
-	// zm.new_br.rl = (fr->rbound - fr->lbound) * MAGNIFICATION - zm.new_tl.rl;
-	// zm.new_br.im = (fr->tbound - fr->bbound) * MAGNIFICATION - zm.new_tl.im;
+	// // zm.new_tl.rl = zm.old_tl.rl;
+	// // zm.new_tl.im = zm.old_tl.im;
+	// // zm.new_br.rl = (fr->rbound - fr->lbound) * MAGNIFICATION - zm.new_tl.rl;
+	// // zm.new_br.im = (fr->tbound - fr->bbound) * MAGNIFICATION - zm.new_tl.im;
 
 	// fr->lbound = fr->cursor.rl - zm.new_tl.rl;
 	// fr->rbound = fr->cursor.rl + zm.new_br.rl;
 	// fr->tbound = fr->cursor.im + zm.new_tl.im;
 	// fr->bbound = fr->cursor.im - zm.new_br.im;
 
-	// fr->lbound = fr->cursor.rl - (fr->cursor.rl - fr->lbound) * MAGNIFICATION;
-	// fr->rbound = fr->cursor.rl + (fr->rbound - fr->cursor.rl) * MAGNIFICATION;
-	// fr->tbound = fr->cursor.im + (fr->tbound - fr->cursor.im) * MAGNIFICATION;
-	// fr->bbound = fr->cursor.im - (fr->cursor.im - fr->bbound) * MAGNIFICATION;
-
-	fr->lbound = fr->cursor.rl + (fr->lbound - fr->cursor.rl) * MAGNIFICATION;
+	fr->lbound = fr->cursor.rl - (fr->cursor.rl - fr->lbound) * MAGNIFICATION;
 	fr->rbound = fr->cursor.rl + (fr->rbound - fr->cursor.rl) * MAGNIFICATION;
 	fr->tbound = fr->cursor.im + (fr->tbound - fr->cursor.im) * MAGNIFICATION;
-	fr->bbound = fr->cursor.im + (fr->bbound - fr->cursor.im) * MAGNIFICATION;
-	
-	printf("zoomed_out\n");
-}
-
-
-
-
-
-
-
-
-
-
-void	update_to_new_center(t_fractal *fr)
-{
-	fr->center.rl = (fr->rbound + fr->lbound) / 2;
-	fr->center.im = (fr->tbound + fr->bbound) / 2;
-	fr->plot_radius_x = (fr->rbound - fr->lbound) / 2 * fr->zoom;
-	fr->plot_radius_y = (fr->tbound - fr->bbound) / 2 * fr->zoom;
-}
-
-void	update_center_to_cursor(t_fractal *fr)
-{
-	fr->center.rl = fr->cursor.rl;
-	fr->center.im = fr->cursor.im;
-}
-
-void	update_bounds0(t_fractal *fr)
-{
-	// fr->lbound = (fr->center.rl - fr->plot_radius_x) * fr->zoom;
-	// fr->rbound = (fr->center.rl + fr->plot_radius_x) * fr->zoom;
-	// fr->tbound = (fr->center.im + fr->plot_radius_y) * fr->zoom;
-	// fr->bbound = (fr->center.im - fr->plot_radius_y) * fr->zoom;
-	
-	fr->lbound = (fr->center.rl - fr->plot_radius_x);
-	fr->rbound = (fr->center.rl + fr->plot_radius_x);
-	fr->tbound = (fr->center.im + fr->plot_radius_y);
-	fr->bbound = (fr->center.im - fr->plot_radius_y);
+	fr->bbound = fr->cursor.im - (fr->cursor.im - fr->bbound) * MAGNIFICATION;
 }

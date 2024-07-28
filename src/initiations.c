@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 05:48:45 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/28 04:13:31 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/28 15:35:27 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	init_fractal(t_fractal *fr)
 	fr->mlx = mlx_init(WIDTH, HEIGHT, fr->name, 0);
 	if (!fr->mlx)
 		frexit("Failed to initialize MLX", fr, EXIT_FAILURE);
-	fr->img = mlx_new_image(fr->mlx, HEIGHT, WIDTH);
+	fr->img = mlx_new_image(fr->mlx, WIDTH, HEIGHT);
 	if (!fr->img)
 		frexit("New image failed", fr, EXIT_FAILURE);
 	
-	//render_fractals(fr);
+	render_fractals(fr);
 	// Display an instance of the image
 	if (mlx_image_to_window(fr->mlx, fr->img, 0, 0) < 0)
 		frexit("Image to window failed", fr, EXIT_FAILURE);
@@ -63,6 +63,6 @@ void	init_events(t_fractal *fr)
 	mlx_scroll_hook(fr->mlx, &upon_scroll, fr);
 	mlx_key_hook(fr->mlx, &upon_press, fr);
 	mlx_close_hook(fr->mlx, &upon_close, fr);
-	mlx_loop(fr->mlx);
-	mlx_terminate(fr->mlx);
+	// mlx_loop(fr->mlx);
+	// mlx_terminate(fr->mlx);
 }

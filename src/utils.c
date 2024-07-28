@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 00:28:21 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/27 10:49:35 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/28 15:03:17 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	arg_error(int status)
 	ft_fprintf(2, "Available options:\n");
 	ft_fprintf(2, "\t1. \"Mandelbrot\"\n");
 	ft_fprintf(2, "\t2. \"Julia\" <real> <img>\n");
+	ft_fprintf(2, "\t3. \"Burning ship\"\n");
 	exit(status);
 }
 
