@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 00:05:07 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/28 19:50:22 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 05:14:42 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_cmplx	c_sqr_plus_const_abs(t_cmplx z, t_cmplx c)
 	t_cmplx	res;
 
 	res.rl = ft_abs((z.rl * z.rl - z.im * z.im) + c.rl);
-	res.im = (2 * ft_abs(z.rl) * ft_abs(z.im)) + c.im;
+	res.im = - (2 * ft_abs(z.rl) * ft_abs(z.im)) + c.im;
 	return (res);
 }
 

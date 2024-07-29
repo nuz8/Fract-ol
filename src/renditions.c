@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 05:02:48 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/29 03:36:28 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 05:16:14 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	render_mandelbrot(t_fractal *fr)
 			tmp.rl = dim[1];
 			tmp.im = dim[0];
 			fr->c.rl = scale_p(tmp.rl, fr->img->width, fr->lbound, fr->rbound);
-			fr->c.im = scale_p(tmp.im, fr->img->height, fr->bbound, fr->tbound);
+			fr->c.im = scale_p(tmp.im, fr->img->height, fr->tbound, fr->bbound);
 			esc_val = blast_off(fr);
 			color = scale_color(esc_val, fr->iter_rendition, fr);
 			mlx_put_pixel(fr->img, dim[1], dim[0], color);
@@ -64,15 +64,15 @@ void	render_julia(t_fractal *fr)
 	t_cmplx	tmp;
 
 	dim[0] = 0;
-	while (dim[0] < HEIGHT)
+	while (dim[0] < (int)fr->img->height)
 	{
 		dim[1] = 0;
-		while (dim[1] < WIDTH)
+		while (dim[1] < (int)fr->img->width)
 		{
 			tmp.rl = dim[1];
 			tmp.im = dim[0];
-			fr->z.rl = scale_p(tmp.rl, WIDTH, fr->lbound, fr->rbound);
-			fr->z.im = scale_p(tmp.im, HEIGHT, fr->tbound, fr->bbound);
+			fr->z.rl = scale_p(tmp.rl, fr->img->width, fr->lbound, fr->rbound);
+			fr->z.im = scale_p(tmp.im, fr->img->height, fr->tbound, fr->bbound);
 			escape_val = blast_off(fr);
 			color = scale_color(escape_val, fr->iter_rendition, fr);
 			mlx_put_pixel(fr->img, dim[1], dim[0], color);
@@ -90,15 +90,15 @@ void	render_burning_ship(t_fractal *fr)
 	t_cmplx	tmp;
 
 	dim[0] = 0;
-	while (dim[0] < HEIGHT)
+	while (dim[0] < (int)fr->img->height)
 	{
 		dim[1] = 0;
-		while (dim[1] < WIDTH)
+		while (dim[1] < (int)fr->img->width)
 		{
 			tmp.rl = dim[1];
 			tmp.im = dim[0];
-			fr->c.rl = scale_p(tmp.rl, WIDTH, fr->lbound, fr->rbound);
-			fr->c.im = scale_p(tmp.im, HEIGHT, fr->bbound, fr->tbound);
+			fr->c.rl = scale_p(tmp.rl, fr->img->width, fr->lbound, fr->rbound);
+			fr->c.im = scale_p(tmp.im, fr->img->height, fr->tbound, fr->bbound);
 			escape_val = blast_off(fr);
 			color = scale_color(escape_val, fr->iter_rendition, fr);
 			mlx_put_pixel(fr->img, dim[1], dim[0], color);

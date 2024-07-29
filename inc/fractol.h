@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 00:36:33 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/29 03:16:54 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 06:16:22 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define _PRINT 1
 
 # define MAX_ITER 100
+# define QUALITY_DELTA 25
 # define ESC_RADIUS 2
 # define HEIGHT 600
 # define WIDTH 800
@@ -104,13 +105,15 @@ double	ft_abs(double num);
 void	upon_press(mlx_key_data_t keydata, void *param);
 void	upon_scroll(double xdelta, double ydelta, void *param);
 void	upon_close(void *param);
+void	change_details(t_fractal *fr, mlx_key_data_t keydata);
+void	change_color(t_fractal *fr);
 
 // boundaries.c
 void	update_geometry(t_fractal *fr);
 void	move_fractal(t_fractal *fr, mlx_key_data_t keydata);
 void	move_bounds(t_fractal *fr, mlx_key_data_t keydata);
 void	ft_zoom(t_fractal *fr, double ydelta);
-void	change_color(t_fractal *fr);
+void	reset_bounds(t_fractal *fr);
 
 // iterations.c
 t_cmplx	get_next_iteration(t_cmplx z_n, t_cmplx c);
