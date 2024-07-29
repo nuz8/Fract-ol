@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 01:47:59 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/29 02:14:38 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 02:51:51 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,6 @@ void	upon_scroll(double xdelta, double ydelta, void *param)
 	mlx_get_mouse_pos(fr->mlx, &cursor_x, &cursor_y);
 	fr->cursor.rl = scale_p(cursor_x, WIDTH, fr->lbound, fr->rbound);
 	fr->cursor.im = scale_p(cursor_y, HEIGHT, fr->bbound, fr->tbound);
-	// if (ydelta < 0)
-	// 	zoom_in(fr);
-	// else if (ydelta > 0)
-	// 	zoom_out(fr);
 	if (ydelta < 0 || ydelta > 0)
 		ft_zoom(fr, ydelta);
 }

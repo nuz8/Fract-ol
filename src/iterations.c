@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 03:39:50 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/29 02:44:38 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 03:09:38 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	scale_color(int iter, int max_iter, t_fractal *fr)
 
 	start_color = fr->color;
 	end_color = BLACK;
-	// color_step = (end_color - start_color) / fr->iter_rendition;
 	color_step = 1;
 	ratio = (end_color - start_color) / (max_iter - 0);
 	scaled_color = start_color + iter * color_step * ratio;

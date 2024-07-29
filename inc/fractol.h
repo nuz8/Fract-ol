@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 00:36:33 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/29 02:29:20 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 02:59:15 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ void	change_color(t_fractal *fr);
 // iterations.c
 t_cmplx	get_next_iteration(t_cmplx z_n, t_cmplx c);
 double	scale_p(double val, double max_val, double sc_min, double sc_max);
-// int		scale_color(int iter, int max_iter, int start_color, int end_color);
 int		scale_color(int iter, int max_iter, t_fractal *fr);
 int		blast_off(t_fractal *fr);
 

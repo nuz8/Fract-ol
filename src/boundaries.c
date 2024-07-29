@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 17:35:22 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/29 02:16:30 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 02:48:51 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_zoom(t_fractal *fr, double ydelta)
 {
 	t_zoom	zm;
 	double	zoom;
-	
+
 	zoom = 1;
 	update_geometry(fr);
 	if (ydelta < 0)
