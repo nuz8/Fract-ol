@@ -6,18 +6,16 @@
 #    By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 14:30:19 by pamatya           #+#    #+#              #
-#    Updated: 2024/07/28 03:18:27 by pamatya          ###   ########.fr        #
+#    Updated: 2024/07/28 19:13:21 by pamatya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
-# CC		=	cc -g -fsanitize=address
 
-CFLAGS	=	-Wall -Wextra -Werror -g
+CFLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -f
 
-# BIN_PATH=	.
-BIN_PATH=	./bin
+BIN_PATH=	.
 NAME	=	fractol
 BIN		=	$(BIN_PATH)/$(NAME)
 
@@ -31,20 +29,16 @@ MLX		=	$(MLX_DIR)/$(LIB_MLX)
 
 HEADERS	=	-I ./inc -I ./lib/includes
 
+SRCS	=	./src/main.c ./src/initiations.c ./src/renditions.c \
+			./src/boundaries.c ./src/manage_events.c \
+			./src/complex_arithmetic.c ./src/iter_funcns.c ./src/utils.c
 
-SRCS	=	./src/main.c ./src/initiations.c ./src/renditions.c ./src/manage_events.c ./src/complex_arithmetic.c ./src/iter_funcns.c ./src/utils.c
 OBJS	=	$(SRCS:.c=.o)
-
-TEST	=	./src/main.c
-# DEBUG	=	$(TEST)
-DEBUG	=	$(SRCS)
 
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(FT) -Llib -lmlx42 -lglfw -framework OpenGL -framework AppKit $(HEADERS) -o $(BIN)
-# $(CC) $(CFLAGS) $(OBJS) $(FT)  -Llib -lmlx42 -lglfw -framework OpenGL -framework AppKit $(HEADERS) -o $(BIN)
-# $(CC) $(CFLAGS) $(OBJS) $(FT) $(MLX) $(HEADERS) -o $(BIN)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -52,25 +46,16 @@ $(NAME): $(OBJS) $(LIBFT)
 $(LIBFT):
 	$(MAKE) -sC $(FT_DIR) all
 
-# $(LIB_MLX):
-# 	$(MAKE) -sC $(MLX_DIR)
-
 clean:
 	$(RM) $(OBJS)
+	$(MAKE) -sC $(FT_DIR) clean
 
 fclean: clean
 	$(RM) $(BIN)
 	$(RM) $(FT)
-
-cleanx: clean
-	$(MAKE) -sC $(FT_DIR) fclean
-
-fcleanx: fclean
 	$(MAKE) -sC $(FT_DIR) fclean
 
 re: fclean
-	$(MAKE) fclean
 	$(MAKE) all
-# $(MAKE) -sC $(MLX_DIR) re
 
 .PHONY: all clean fclean re

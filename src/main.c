@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 04:19:51 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/28 15:01:33 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/28 19:50:38 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_fractal	fr;
 	int			mode;
-	
+
 	mode = 0;
 	if (argc == 2 && ft_strncmp(argv[1], "Mandelbrot", 10) == 0)
 		mode = 1;
@@ -31,6 +31,5 @@ int	main(int argc, char **argv)
 	init_events(&fr);
 	mlx_loop(fr.mlx);
 	mlx_terminate(fr.mlx);
-	printf("im done\n");
 	return (0);
 }
