@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 01:47:59 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/29 06:12:44 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 06:37:45 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	upon_close(void *param)
 void	change_details(t_fractal *fr, mlx_key_data_t keydata)
 {
 	if (keydata.key == MLX_KEY_KP_ADD && keydata.action == MLX_PRESS)
-			fr->iter_rendition += QUALITY_DELTA;
+		fr->iter_rendition += QUALITY_DELTA;
 	else if (keydata.key == MLX_KEY_KP_SUBTRACT && keydata.action == MLX_PRESS)
-		if (fr->iter_rendition > QUALITY_DELTA) 
+		if (fr->iter_rendition > QUALITY_DELTA)
 			fr->iter_rendition -= QUALITY_DELTA;
 }
 

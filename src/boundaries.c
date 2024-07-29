@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 17:35:22 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/29 06:26:31 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 06:30:05 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	move_fractal(t_fractal *fr, mlx_key_data_t keydata);
 void	move_bounds(t_fractal *fr, mlx_key_data_t keydata);
 void	ft_zoom(t_fractal *fr, double ydelta);
 void	reset_bounds(t_fractal *fr);
-// static double	magic_number(int mode);
 
 void	update_geometry(t_fractal *fr)
 {
@@ -27,39 +26,20 @@ void	update_geometry(t_fractal *fr)
 	fr->plot_radius_y = (fr->tbound - fr->bbound) / 2;
 	fr->offset.rl = 2 * fr->plot_radius_x * MOVE_SPEED;
 	fr->offset.im = 2 * fr->plot_radius_y * MOVE_SPEED;
-	// printf("tbound: %f\n", fr->tbound);
-	// printf("bbound: %f\n", fr->bbound);
-	// printf("offset.im: %f\n", fr->offset.im);
 }
-
-// static double	magic_number(int mode)
-// {
-// 	if (mode == 3)
-// 		return (-1.0);
-// 	else
-// 		return (1.0);
-// }
 
 void	move_fractal(t_fractal *fr, mlx_key_data_t keydata)
 {
 	update_geometry(fr);
 	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
 	{
-		// printf("%f\n", magic_number(fr->mode));
-		// printf("%f\n", fr->tbound);
-		// printf("%f\n", fr->offset.im);
-		// fr->tbound = fr->tbound - fr->offset.im * magic_number(fr->mode);
-		// fr->bbound = fr->bbound - fr->offset.im * magic_number(fr->mode);
 		fr->tbound -= fr->offset.im;
 		fr->bbound -= fr->offset.im;
-		// printf("%f\n", fr->tbound);
 	}
 	else if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
 	{
-		// fr->tbound = fr->tbound + fr->offset.im * magic_number(fr->mode);
-		// fr->bbound = fr->bbound + fr->offset.im * magic_number(fr->mode);
-		fr->tbound = fr->tbound + fr->offset.im;
-		fr->bbound = fr->bbound + fr->offset.im;
+		fr->tbound += fr->offset.im;
+		fr->bbound += fr->offset.im;
 	}
 	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
 	{
@@ -78,17 +58,13 @@ void	move_bounds(t_fractal *fr, mlx_key_data_t keydata)
 	update_geometry(fr);
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 	{
-		// fr->tbound = fr->tbound + fr->offset.im * magic_number(fr->mode);
-		// fr->bbound = fr->bbound + fr->offset.im * magic_number(fr->mode);
-		fr->tbound = fr->tbound + fr->offset.im;
-		fr->bbound = fr->bbound + fr->offset.im;
+		fr->tbound += fr->offset.im;
+		fr->bbound += fr->offset.im;
 	}
 	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
 	{
-		// fr->tbound = fr->tbound - fr->offset.im * magic_number(fr->mode);
-		// fr->bbound = fr->bbound - fr->offset.im * magic_number(fr->mode);
-		fr->tbound = fr->tbound - fr->offset.im;
-		fr->bbound = fr->bbound - fr->offset.im;
+		fr->tbound -= fr->offset.im;
+		fr->bbound -= fr->offset.im;
 	}
 	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
 	{
