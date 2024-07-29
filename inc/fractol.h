@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 00:36:33 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/29 01:54:09 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 02:29:20 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@
 // Color definitions: simple RGB
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
-# define RED   0xFF0000
-# define GREEN 0x00FF00
-# define BLUE  0x0000FF
-# define YELLOW 0xFFFF00
+# define PSYCH_VIOLET 0x8B00FF
 # define CYAN   0x00FFFF
 # define MAGENTA 0xFF00FF
-# define PSYCH_VIOLET 0x8B00FF
+# define YELLOW 0xFFFF00
+# define BLUE  0x0000FF
+# define GREEN 0x00FF00
+# define RED   0xFF0000
 
 typedef struct s_cmplx
 {
@@ -79,6 +79,7 @@ typedef struct s_fractal
 	double		tbound;
 	double		bbound;
 	double		bound;
+	int			color;
 	int			iter_rendition;
 }	t_fractal;
 
@@ -108,14 +109,14 @@ void	upon_close(void *param);
 void	update_geometry(t_fractal *fr);
 void	move_fractal(t_fractal *fr, mlx_key_data_t keydata);
 void	move_bounds(t_fractal *fr, mlx_key_data_t keydata);
-void	zoom_in(t_fractal *fr);
-void	zoom_out(t_fractal *fr);
 void	ft_zoom(t_fractal *fr, double ydelta);
+void	change_color(t_fractal *fr);
 
-// iter_funcns.c
+// iterations.c
 t_cmplx	get_next_iteration(t_cmplx z_n, t_cmplx c);
 double	scale_p(double val, double max_val, double sc_min, double sc_max);
-int		scale_color(int iter, int max_iter, int start_color, int end_color);
+// int		scale_color(int iter, int max_iter, int start_color, int end_color);
+int		scale_color(int iter, int max_iter, t_fractal *fr);
 int		blast_off(t_fractal *fr);
 
 // utils.c

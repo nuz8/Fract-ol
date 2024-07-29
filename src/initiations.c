@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 05:48:45 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/29 01:40:54 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 02:10:25 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	initialize_fields(t_fractal *fr, int argc, char **argv, int mode)
 	}
 	else
 		(void)argc;
+	fr->color = RED;
 }
 
 void	init_fractal(t_fractal *fr)

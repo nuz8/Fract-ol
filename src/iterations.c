@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter_funcns.c                                      :+:      :+:    :+:   */
+/*   iterations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 03:39:50 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/29 00:30:47 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 02:44:38 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_cmplx	get_next_iteration(t_cmplx z_n, t_cmplx c);
 double	scale_p(double val, double max_val, double sc_min, double sc_max);
-int		scale_color(int iter, int max_iter, int start_color, int end_color);
+int		scale_color(int iter, int max_iter, t_fractal *fr);
 int		blast_off(t_fractal *fr);
 
 t_cmplx	get_next_iteration(t_cmplx z_n, t_cmplx c)
@@ -38,13 +38,20 @@ double	scale_p(double val, double max_val, double sc_min, double sc_max)
 }
 
 // Similar function as above to scale color as int
-int	scale_color(int iter, int max_iter, int start_color, int end_color)
+int	scale_color(int iter, int max_iter, t_fractal *fr)
 {
+	int	start_color;
+	int	end_color;
 	int	scaled_color;
 	int	ratio;
+	int	color_step;
 
+	start_color = fr->color;
+	end_color = BLACK;
+	// color_step = (end_color - start_color) / fr->iter_rendition;
+	color_step = 1;
 	ratio = (end_color - start_color) / (max_iter - 0);
-	scaled_color = start_color + iter * ratio;
+	scaled_color = start_color + iter * color_step * ratio;
 	return (scaled_color);
 }
 

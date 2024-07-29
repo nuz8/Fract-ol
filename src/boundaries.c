@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 17:35:22 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/29 01:51:16 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 02:16:30 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 void	update_geometry(t_fractal *fr);
 void	move_fractal(t_fractal *fr, mlx_key_data_t keydata);
 void	move_bounds(t_fractal *fr, mlx_key_data_t keydata);
-void	zoom_in(t_fractal *fr);
-void	zoom_out(t_fractal *fr);
 void	ft_zoom(t_fractal *fr, double ydelta);
+void	change_color(t_fractal *fr);
 
 void	update_geometry(t_fractal *fr)
 {
@@ -79,44 +78,6 @@ void	move_bounds(t_fractal *fr, mlx_key_data_t keydata)
 	}
 }
 
-// void	zoom_in(t_fractal *fr)
-// {
-// 	t_zoom	zm;
-
-// 	update_geometry(fr);
-// 	zm.old_tl.rl = fr->cursor.rl - fr->lbound;
-// 	zm.old_br.rl = fr->rbound - fr->cursor.rl;
-// 	zm.old_tl.im = fr->tbound - fr->cursor.im;
-// 	zm.old_br.im = fr->cursor.im - fr->bbound;
-// 	zm.new_tl.rl = zm.old_tl.rl / MAGNIFICATION;
-// 	zm.new_tl.im = zm.old_tl.im / MAGNIFICATION;
-// 	zm.new_br.rl = zm.old_br.rl / MAGNIFICATION;
-// 	zm.new_br.im = zm.old_br.im / MAGNIFICATION;
-// 	fr->lbound = fr->cursor.rl - zm.new_tl.rl;
-// 	fr->rbound = fr->cursor.rl + zm.new_br.rl;
-// 	fr->tbound = fr->cursor.im + zm.new_tl.im;
-// 	fr->bbound = fr->cursor.im - zm.new_br.im;
-// }
-
-// void	zoom_out(t_fractal *fr)
-// {
-// 	t_zoom	zm;
-
-// 	update_geometry(fr);
-// 	zm.old_tl.rl = fr->cursor.rl - fr->lbound;
-// 	zm.old_br.rl = fr->rbound - fr->cursor.rl;
-// 	zm.old_tl.im = fr->tbound - fr->cursor.im;
-// 	zm.old_br.im = fr->cursor.im - fr->bbound;
-// 	zm.new_tl.rl = zm.old_tl.rl * MAGNIFICATION;
-// 	zm.new_tl.im = zm.old_tl.im * MAGNIFICATION;
-// 	zm.new_br.rl = zm.old_br.rl * MAGNIFICATION;
-// 	zm.new_br.im = zm.old_br.im * MAGNIFICATION;
-// 	fr->lbound = fr->cursor.rl - zm.new_tl.rl;
-// 	fr->rbound = fr->cursor.rl + zm.new_br.rl;
-// 	fr->tbound = fr->cursor.im + zm.new_tl.im;
-// 	fr->bbound = fr->cursor.im - zm.new_br.im;
-// }
-
 void	ft_zoom(t_fractal *fr, double ydelta)
 {
 	t_zoom	zm;
@@ -140,4 +101,24 @@ void	ft_zoom(t_fractal *fr, double ydelta)
 	fr->rbound = fr->cursor.rl + zm.new_br.rl;
 	fr->tbound = fr->cursor.im + zm.new_tl.im;
 	fr->bbound = fr->cursor.im - zm.new_br.im;
+}
+
+void	change_color(t_fractal *fr)
+{
+	if (fr->color == RED)
+		fr->color = GREEN;
+	else if (fr->color == GREEN)
+		fr->color = BLUE;
+	else if (fr->color == BLUE)
+		fr->color = YELLOW;
+	else if (fr->color == YELLOW)
+		fr->color = MAGENTA;
+	else if (fr->color == MAGENTA)
+		fr->color = CYAN;
+	else if (fr->color == CYAN)
+		fr->color = PSYCH_VIOLET;
+	else if (fr->color == PSYCH_VIOLET)
+		fr->color = WHITE;
+	else if (fr->color == WHITE)
+		fr->color = RED;
 }

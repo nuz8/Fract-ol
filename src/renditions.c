@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 05:02:48 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/28 23:57:17 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 02:31:24 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	render_fractals(void *f)
 void	render_mandelbrot(t_fractal *fr)
 {
 	int		dim[2];
-	int		escape_val;
+	int		esc_val;
 	int		color;
 	t_cmplx	tmp;
 
@@ -47,8 +47,8 @@ void	render_mandelbrot(t_fractal *fr)
 			tmp.im = dim[0];
 			fr->c.rl = scale_p(tmp.rl, fr->img->width, fr->lbound, fr->rbound);
 			fr->c.im = scale_p(tmp.im, fr->img->height, fr->bbound, fr->tbound);
-			escape_val = blast_off(fr);
-			color = scale_color(escape_val, fr->iter_rendition, RED, BLACK);
+			esc_val = blast_off(fr);
+			color = scale_color(esc_val, fr->iter_rendition, fr);
 			mlx_put_pixel(fr->img, dim[1], dim[0], color);
 			dim[1]++;
 		}
@@ -74,7 +74,7 @@ void	render_julia(t_fractal *fr)
 			fr->z.rl = scale_p(tmp.rl, WIDTH, fr->lbound, fr->rbound);
 			fr->z.im = scale_p(tmp.im, HEIGHT, fr->bbound, fr->tbound);
 			escape_val = blast_off(fr);
-			color = scale_color(escape_val, fr->iter_rendition, RED, BLACK);
+			color = scale_color(escape_val, fr->iter_rendition, fr);
 			mlx_put_pixel(fr->img, dim[1], dim[0], color);
 			dim[1]++;
 		}
@@ -100,7 +100,7 @@ void	render_burning_ship(t_fractal *fr)
 			fr->c.rl = scale_p(tmp.rl, WIDTH, fr->lbound, fr->rbound);
 			fr->c.im = scale_p(tmp.im, HEIGHT, fr->bbound, fr->tbound);
 			escape_val = blast_off(fr);
-			color = scale_color(escape_val, fr->iter_rendition, RED, BLACK);
+			color = scale_color(escape_val, fr->iter_rendition, fr);
 			mlx_put_pixel(fr->img, dim[1], dim[0], color);
 			dim[1]++;
 		}

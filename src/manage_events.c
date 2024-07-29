@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 01:47:59 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/29 01:49:14 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 02:14:38 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	upon_press(mlx_key_data_t keydata, void *param)
 		fr->iter_rendition += 25;
 	else if (keydata.key == MLX_KEY_KP_SUBTRACT && keydata.action == MLX_PRESS)
 		fr->iter_rendition -= 25;
+	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
+		change_color(fr);
 	else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		upon_close(fr);
 }

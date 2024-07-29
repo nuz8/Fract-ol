@@ -6,7 +6,7 @@
 #    By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 14:30:19 by pamatya           #+#    #+#              #
-#    Updated: 2024/07/28 19:13:21 by pamatya          ###   ########.fr        #
+#    Updated: 2024/07/29 02:02:24 by pamatya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ HEADERS	=	-I ./inc -I ./lib/includes
 
 SRCS	=	./src/main.c ./src/initiations.c ./src/renditions.c \
 			./src/boundaries.c ./src/manage_events.c \
-			./src/complex_arithmetic.c ./src/iter_funcns.c ./src/utils.c
+			./src/complex_arithmetic.c ./src/iterations.c ./src/utils.c
 
 OBJS	=	$(SRCS:.c=.o)
 
