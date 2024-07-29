@@ -6,7 +6,7 @@
 /*   By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 05:02:48 by pamatya           #+#    #+#             */
-/*   Updated: 2024/07/29 02:31:24 by pamatya          ###   ########.fr       */
+/*   Updated: 2024/07/29 03:36:28 by pamatya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	render_julia(t_fractal *fr)
 			tmp.rl = dim[1];
 			tmp.im = dim[0];
 			fr->z.rl = scale_p(tmp.rl, WIDTH, fr->lbound, fr->rbound);
-			fr->z.im = scale_p(tmp.im, HEIGHT, fr->bbound, fr->tbound);
+			fr->z.im = scale_p(tmp.im, HEIGHT, fr->tbound, fr->bbound);
 			escape_val = blast_off(fr);
 			color = scale_color(escape_val, fr->iter_rendition, fr);
 			mlx_put_pixel(fr->img, dim[1], dim[0], color);
