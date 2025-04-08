@@ -20,7 +20,7 @@ Fract-ol is a graphical program that renders beautiful mathematical fractals. Th
   - Left click + drag: Move around
   - SPACE key: Cycle through color schemes
   - R key: Reset boundaries to initial view (zoom, extent, and resolution)
-  - +/- keys: Increase/decrease resolution/ detail
+  - +/- keys: Increase or decrease resolution/detail
   - Movements:
       - Arrow keys: Move view-extent
       - W, A, S, D: Move image within window
