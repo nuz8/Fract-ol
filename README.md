@@ -2,7 +2,7 @@
 
 ![Project](https://img.shields.io/badge/Project-42-lightgrey) ![Language](https://img.shields.io/badge/Language-C-blue) ![Graphics](https://img.shields.io/badge/Graphics-minilibx-orange)
 
-A fractal exploration program written in C that visualizes different types of fractals.
+In this project, I have written a simple program with minimal but logical functionalities for fractal exploration. It renders different types of beautiful fractals, mainly 3 types: Mandelbrot, The Julia Set, and The Burning Ship. I did this project also as part of 42's curriculum, using C and minilibX library for graphics rendering and event-handling.
 
 ## Overview
 
