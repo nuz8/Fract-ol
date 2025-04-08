@@ -55,5 +55,5 @@ cd fract-ol
 # Compile the program
 make
 
-# Run with a specified fractal
-./fractol mandelbrot
+# Run with a specified fractal (here option 1, mandelbrot)
+./fractol Mandelbrot
