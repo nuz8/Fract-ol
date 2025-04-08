@@ -32,8 +32,15 @@ Fract-ol is a graphical program that renders beautiful mathematical fractals. Th
 ### Burning Ship Fractal
 <div align="center">
   <img src="./img/Burning_ship_fractal.png" width="80%" alt="Burning Ship Fractal"/>
-  <p><em>The Burning Ship fractal with custom coloring</em></p>
+  <p><em>The Burning Ship fractal zoomed-in view</em></p>
 </div>
+
+## Usage
+Running:	`./fractol <fractal_name_option> <option_arguments>`
+Available options:
+1.	`"Mandelbrot"`
+2.	`"Julia" <real> <img>`
+3.	`"Burning ship"`
 
 ## Installation
 
