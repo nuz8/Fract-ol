@@ -37,6 +37,7 @@ Fract-ol is a graphical program that renders beautiful mathematical fractals. Th
 
 ## Usage
 Running:	`./fractol <fractal_name_option> <option_arguments>`
+
 Available options:
 1.	`"Mandelbrot"`
 2.	`"Julia" <real> <img>`
