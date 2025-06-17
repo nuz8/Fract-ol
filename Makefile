@@ -6,7 +6,7 @@
 #    By: pamatya <pamatya@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 14:30:19 by pamatya           #+#    #+#              #
-#    Updated: 2024/07/29 02:02:24 by pamatya          ###   ########.fr        #
+#    Updated: 2025/06/17 16:04:50 by pamatya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ OBJS	=	$(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(FT) -Llib -lmlx42 -lglfw -framework OpenGL -framework AppKit $(HEADERS) -o $(BIN)
+	$(CC) $(CFLAGS) $(OBJS) $(FT) -Llib -L/opt/homebrew/lib -lmlx42 -lglfw -framework OpenGL -framework AppKit $(HEADERS) -o $(BIN)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
